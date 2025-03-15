@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vanecoco</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <style>
+        body {
+            font-family: Montserrat, sans-serif;
+            font-weight: 900;
+            margin: 0;
+            padding: 0;
+        }
+        body, body * {
+            cursor: none;
+        }
+        .shapes {
+            position: relative;
+            height: 90vh;
+            width: 100%;
+            background: #2184bd;
+            overflow: hidden;
+        }
+        .shape {
+            will-change: transform;
+            position: absolute;
+            border-radius: 50%;
+        }
+        .shape.shape-1 {
+            background: #fe0066;
+            width: 50vmin;
+            height: 50vmin;
+            margin: -25vmin 0 0 -25vmin;
+        }
+        .shape.shape-2 {
+            background: #058a76;
+            width: 35vmin;
+            height: 35vmin;
+            margin: -17.5vmin 0 0 -17.5vmin;
+        }
+        .shape.shape-3 {
+            background: #23c803;
+            width: 20vmin;
+            height: 20vmin;
+            margin: -10vmin 0 0 -10vmin;
+        }
+        .content {
+            top: 0;
+            left: 0;
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100%;
+            background: #fff;
+            mix-blend-mode: screen;
+        }
+        h1 {
+            font-size: calc(30px + 10vmin);
+            color: #0f1ae3;
+            margin: 0;
+            text-align: center;
+        }
+        .spacer {
+            margin-bottom: 40px;
+        }
+        .cursor {
+            position: fixed;
+            background: #bd2121;
+            width: 2vmin;
+            height: 2vmin;
+            margin: -1vmin 0 0 -1vmin;
+            border-radius: 50%;
+            will-change: transform;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            pointer-events: none;
+            z-index: 10000;
+        }
+        ::-moz-selection {
+            color: #fff;
+            background: #2128bd;
+        }
+        ::selection {
+            color: #fff;
+            background: #2128bd;
+        }
+        .data-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .btn {
+            cursor: pointer;
+            position: relative;
+            padding: 2vmin 4vmin;
+            background: white;
+            font-size: calc(10px + 2vmin);
+            border-top-right-radius: 2vmin;
+            border-bottom-left-radius: 2vmin;
+            transition: all 1s;
+        }
+        .btn::after, .btn::before {
+            content: " ";
+            width: 1vmin;
+            height: 1vmin;
+            position: absolute;
+            border: 0px solid #fff;
+            transition: all 1s;
+        }
+        .btn::after {
+            top: -0.5vmin;
+            left: -0.5vmin;
+            border-top: 0.5vmin solid black;
+            border-left: 0.5vmin solid black;
+        }
+        .btn::before {
+            bottom: -0.5vmin;
+            right: -0.5vmin;
+            border-bottom: 0.5vmin solid black;
+            border-right: 0.5vmin solid black;
+        }
+        .btn:hover {
+            border-top-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+        .btn:hover::before, .btn:hover::after {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body translate="no">
+    <div class="cursor"></div>
+    <div class="shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+    <div class="content">
+        <h1>Feliz cumpleaños <br>Vanecoco</h1>
+        <div class="spacer"></div>
+        <div class="data-container">
+            <a href="index2.html" class="btn">Continuar</a>
+        </div>
+    </div>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/gsap-latest-beta.min.js"></script>
+    <script>
+        document.body.addEventListener("mousemove", evt => {
+            const mouseX = evt.clientX;
+            const mouseY = evt.clientY;
+            gsap.set(".cursor", { x: mouseX, y: mouseY });
+            gsap.to(".shape", { x: mouseX, y: mouseY, stagger: -0.1 });
+        });
+    </script>
+</body>
+</html>
